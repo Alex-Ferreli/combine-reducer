@@ -1,0 +1,50 @@
+{
+  "name": "combine-reducer",
+  "version": "0.0.0",
+  "description": "Utility function to assign another reducer to object property (split reducer of single object)",
+  "repository": "https://github.com/Alex-Ferreli/combine-reducer",
+  "jsnext:main": "lib/es6/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/es6/index.js",
+  "scripts": {
+    "prebuild": "npm run lint && rimraf lib",
+    "build-types": "tsc --declaration --emitDeclarationOnly",
+    "build-types:cjs": "npm run build-types -- --outDir lib/cjs",
+    "build-types:ES6": "npm run build-types -- --outDir lib/ES6",
+    "build:src": "babel src --extensions .ts --ignore src/**/*.spec.ts,src/**/*.test.ts --source-maps -d",
+    "build:src:cjs": "cross-env BABEL_ENV=cjs npm run build:src -- --out-dir lib/cjs",
+    "build:src:ES6": "cross-env BABEL_ENV=es6 npm run build:src -- --out-dir lib/ES6",
+    "build": "concurrently \"npm:build-types:cjs\" \"npm:build-types:ES6\" \"npm:build:src:cjs\" \"npm:build:src:ES6\"",
+    "lint": "eslint src/**/*.ts --ignore-pattern src/**/*.test.ts",
+    "test": "jest src",
+    "test-w": "npm run jest -- --watch",
+    "release": "np --no-cleanup",
+    "postversion": "npm run build"
+  },
+  "author": {
+    "name": "Alex Ferreli",
+    "email": "ferreli.ale@gmail.com",
+    "url": "https://github.com/Alex-Ferreli"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.8",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "concurrently": "^4.1.1",
+    "cross-env": "^5.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.8.0",
+    "np": "^5.0.3",
+    "rimraf": "^2.6.3",
+    "typescript": "^3.5.3"
+  }
+}
