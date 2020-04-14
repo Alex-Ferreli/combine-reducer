@@ -20,7 +20,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "linebreak-style": [2, "windows"],
+    "linebreak-style": [2, "unix"],
     "@typescript-eslint/indent": [2, 2],
     "@typescript-eslint/no-explicit-any": [0],
     "@typescript-eslint/explicit-function-return-type": [0]
