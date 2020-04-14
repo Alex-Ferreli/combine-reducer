@@ -7,7 +7,7 @@
   "main": "lib/cjs/index.js",
   "module": "lib/es6/index.js",
   "scripts": {
-    "prebuild": "npm run lint && rimraf lib",
+    "prebuild": "concurrently \"npm run lint\" \"npm run test\" \"npm run clean\"",
     "build-types": "tsc --declaration --emitDeclarationOnly",
     "build-types:cjs": "npm run build-types -- --outDir lib/cjs",
     "build-types:es6": "npm run build-types -- --outDir lib/es6",
@@ -15,6 +15,7 @@
     "build:src:cjs": "cross-env BABEL_ENV=cjs npm run build:src -- --out-dir lib/cjs",
     "build:src:es6": "cross-env BABEL_ENV=es6 npm run build:src -- --out-dir lib/es6",
     "build": "concurrently \"npm:build-types:cjs\" \"npm:build-types:es6\" \"npm:build:src:cjs\" \"npm:build:src:es6\"",
+    "clean": "rimraf lib",
     "lint": "eslint src/**/*.ts --ignore-pattern src/**/*.test.ts",
     "test": "jest src",
     "test-w": "npm run jest -- --watch",
