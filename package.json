@@ -1,6 +1,6 @@
 {
   "name": "combine-reducer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility function to assign another reducer to object property (split reducer of single object)",
   "repository": "https://github.com/Alex-Ferreli/combine-reducer",
   "jsnext:main": "lib/es6/index.js",
